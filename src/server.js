@@ -1,10 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-const multer = require('multer');
-const productosRouter = require('./routes/productos');
+import express from 'express';
+import cors from 'cors';
+import multer from 'multer';
+import {engine} from 'express-handlebars';
+import productosRouter from './routes/productos.js';
+import Contenedor from './classes/contenedor.js';
+import {Server} from 'socket.io';
 
 const upload = multer();
 const app = express();
+const productos = new Contenedor();
+
+app.engine('handlebars',engine());
+app.set('views','./views');
+app.set('view engine', 'handlebars');
+
 app.use(upload.single('file'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -17,6 +26,21 @@ const server = app.listen(PORT, () => {
     console.log('Servidor escuchando en ' + PORT);
 });
 
-app.get('/', (req, res)=>{
-    res.send('Desafio clase 8');
+export const io = new Server(server);
+
+app.get('/productos',(req, res)=>{
+    productos.getAll().then(result=>{
+        let info = result.message;
+        let object = {
+            list: info
+        }
+        res.render('productos', object)
+    })
+})
+
+//socket
+io.on('connection', async socket=>{
+    console.log(`El socket ${socket.id} se ha conectado`);
+    let prods = await productos.getAll();
+    socket.emit('tableProduct', prods);
 })

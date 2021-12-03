@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const contenedor = require('../classes/contenedor');
+import contenedor from '../classes/contenedor.js';
+import {io} from '../server.js';
 
 const productos = new contenedor();
 
@@ -18,6 +19,8 @@ router.get('/:id', (req, res)=>{
         res.send(result.message);
     })
 });
+
+
 
 //POSTS
 router.post('/', (req, res)=>{
@@ -50,4 +53,4 @@ router.delete('/', (req, res)=>{
     })
 });
 
-module.exports = router;
+export default router;

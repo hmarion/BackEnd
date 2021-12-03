@@ -28,5 +28,23 @@
     "price": 1890,
     "thumbnail": "https://tonicstore.com.ar/wp-content/uploads/2021/06/jaipur_gin-1-768x768.jpg",
     "id": 5
+  },
+  {
+    "title": "Prueba",
+    "price": "100",
+    "thumbnail": "https://tonicstore.com.ar/wp-content/uploads/2021/06/jaipur_gin-1-768x768.jpg",
+    "id": 6
+  },
+  {
+    "title": "Pruebas",
+    "price": "1",
+    "thumbnail": ".",
+    "id": 7
+  },
+  {
+    "title": "Prueba 2",
+    "price": "1232",
+    "thumbnail": "..",
+    "id": 8
   }
 ]
