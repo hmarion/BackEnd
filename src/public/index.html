@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./index.css">
     <title>Document</title>
 </head>
 <body>
     <div>
         <form id="addProduct">
-            <p>Nuevo Producto</p>
+            <h1>Nuevo Producto</h1>
             <label for="title">Title</label>
             <input name="title" required>
             <label for="price">Price</label>
@@ -26,8 +27,17 @@
     <div>
         <div id="prodTable"></div>
     </div>
+    <div>
+        <h1>Centro de Mensajes</h1>
+        <div>
+            <label for="email">Usuario: </label>
+            <input type="email" id="user" name="email" required>
+            <label for="mensaje">Mensaje: </label>
+            <input id="info">
+            <div id="chat"></div>
+        </div>
+    </div>
     
-    <button><a href="/productos" type="button">Ver productos</button>
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>

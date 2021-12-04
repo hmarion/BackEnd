@@ -1,0 +1,11 @@
+{{#if mensajes}}
+{{#each mensajes}}
+<div>
+    <div id="contenedorMensaje">
+        <p id="usuario">{{this.user}} </p>
+        <p id="fecha"> [{{this.fecha}}]: </P>
+        <p id="mensaje"> {{this.mensaje}}</P>
+    </div>
+</div>
+{{/each}}
+{{/if}}

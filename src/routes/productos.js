@@ -27,6 +27,11 @@ router.post('/', (req, res)=>{
     let producto = req.body;
     productos.save(producto).then(result =>{
         res.send(result.message);
+        if(result.status==="success"){
+            productos.getAll().then(result=>{
+                io.emit('tableProduct', result);
+            })
+        }
     })
 })
 

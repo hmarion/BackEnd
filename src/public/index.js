@@ -15,6 +15,32 @@ socket.on('tableProduct',data=>{
 
 
 
+let input = document.getElementById('info');
+let user = document.getElementById('user');
+input.addEventListener('keyup', (e)=>{
+    if(e.key==="Enter"){
+        let date = new Date();
+        let fecha = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        socket.emit('message',{user: user.value, fecha: fecha,mensaje: e.target.value});
+    }
+})
+
+socket.on('log', data=>{
+    let p = document.getElementById('log');
+    let log = data.reverse();
+    fetch('templates/chat.handlebars').then(String=>String.text()).then(template=>{
+        processedTemplate = Handlebars.compile(template);
+        const mensajeTemplate = {
+            mensajes:log
+        }
+        const html = processedTemplate(mensajeTemplate);
+        let div = document.getElementById('chat');
+        div.innerHTML=html;
+    })
+})
+
+
+
 
 //----------Fin de Socket---------------
 

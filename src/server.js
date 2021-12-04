@@ -27,6 +27,7 @@ const server = app.listen(PORT, () => {
 });
 
 export const io = new Server(server);
+let messages = [];
 
 app.get('/productos',(req, res)=>{
     productos.getAll().then(result=>{
@@ -43,4 +44,10 @@ io.on('connection', async socket=>{
     console.log(`El socket ${socket.id} se ha conectado`);
     let prods = await productos.getAll();
     socket.emit('tableProduct', prods);
+    socket.emit('log', messages);
+
+    socket.on('message',data=>{
+        messages.push(data)
+        io.emit('log', messages);
+    })
 })
