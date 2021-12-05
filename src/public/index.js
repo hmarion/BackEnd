@@ -20,7 +20,7 @@ let user = document.getElementById('user');
 input.addEventListener('keyup', (e)=>{
     if(e.key==="Enter"){
         let date = new Date();
-        let fecha = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        let fecha = `${date.getDate()}/${(date.getMonth())+1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
         socket.emit('message',{user: user.value, fecha: fecha,mensaje: e.target.value});
     }
 })
